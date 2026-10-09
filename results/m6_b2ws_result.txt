@@ -1,0 +1,16 @@
+B2ws (YOLOv8n+LCA, WB+sat data) 3-seed
+
+seed0 : map50=0.8124  map=0.6049
+seed1 : map50=0.8117  map=0.6030
+seed2 : map50=0.8101  map=0.6077
+
+B2ws 3seed : map50 = 0.8114 (std 0.0012)   map = 0.6052 (std 0.0024)
+
+compare B1ws 3seed : map50 0.8064 (std 0.0022)   map 0.5995 (std 0.0037)
+compare B0 raw 3seed: map50 0.8058 (std 0.0036)   map 0.6050 (std 0.0033)
+
+per-class AP50 (3-seed mean +- std):
+  holothurian  : 0.8113 +- 0.0028
+  echinus      : 0.9153 +- 0.0012
+  scallop      : 0.6112 +- 0.0029
+  starfish     : 0.9078 +- 0.0010

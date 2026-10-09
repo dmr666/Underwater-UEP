@@ -1,0 +1,22 @@
+AP-by-size multiseed (3-seed, COCO)
+
+Per-model:
+  B0_s0  AP50_s=0.614 AP50_m=0.814 AP50_l=0.794 | APs=0.412 APm=0.619 APl=0.579
+  B0_s1  AP50_s=0.524 AP50_m=0.807 AP50_l=0.792 | APs=0.395 APm=0.612 APl=0.583
+  B0_s2  AP50_s=0.701 AP50_m=0.822 AP50_l=0.793 | APs=0.471 APm=0.625 APl=0.583
+  B1_s0  AP50_s=0.722 AP50_m=0.823 AP50_l=0.795 | APs=0.513 APm=0.612 APl=0.571
+  B1_s1  AP50_s=0.646 AP50_m=0.823 AP50_l=0.796 | APs=0.440 APm=0.612 APl=0.563
+  B1_s2  AP50_s=0.638 AP50_m=0.813 AP50_l=0.792 | APs=0.457 APm=0.610 APl=0.565
+
+B0 3-seed: AP50_s=0.613±0.088  AP50_m=0.814±0.007  AP50_l=0.793±0.001  APs=0.426±0.040  APm=0.619±0.006  APl=0.581±0.002
+B1 3-seed: AP50_s=0.668±0.046  AP50_m=0.820±0.006  AP50_l=0.794±0.002  APs=0.470±0.038  APm=0.611±0.001  APl=0.566±0.004
+
+Gain B1-B0 (3-seed mean diff):
+  AP50_s = +0.055
+  AP50_m = +0.005
+  AP50_l = +0.001
+  APs = +0.044
+  APm = -0.008
+  APl = -0.015
+
+Verdict: AP50_s gain above +0.08 = robust; shrinks to ±0.02 = single-seed artifact.

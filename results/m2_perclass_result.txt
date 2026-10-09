@@ -1,0 +1,7 @@
+M2 per‑class AP50 (holothurian/echinus/scallop/starfish)
+
+raw‑B0: mAP50=0.8047  每类=[holothurian 0.7874, echinus 0.9164, scallop 0.6025, starfish 0.9124]
+full‑UEP: mAP50=0.8129  每类=[holothurian 0.8246, echinus 0.9110, scallop 0.6138, starfish 0.9021]
+wb‑only: mAP50=0.8092  每类=[holothurian 0.8172, echinus 0.9151, scallop 0.5969, starfish 0.9078]
+clahe‑only: mAP50=0.7914  每类=[holothurian 0.7746, echinus 0.9098, scallop 0.5971, starfish 0.8841]
+sat‑only: mAP50=0.8102  每类=[holothurian 0.7833, echinus 0.9177, scallop 0.6281, starfish 0.9115]

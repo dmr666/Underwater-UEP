@@ -1,0 +1,7 @@
+run,paper_configuration,epochs,optimizer,lr0,seed,batch,imgsz,pretrained,weights_included
+B0_v2,raw baseline (B0),150,AdamW,0.00125,0,8,640,false,true
+B1_v2,UEP, white balance + adaptive saturation (B1),150,AdamW,0.00125,0,8,640,false,true
+B23,UEP + 309-parameter LCA in the neck (B2),150,AdamW,0.00125,0,8,640,false,true
+B1_fixed,UEP development run (superseded by B1_v2),,,,,,,,true
+B1_v3,UEP development run (superseded by B1_v2),,,,,,,,true
+B2_v2,UEP + LCA development run (superseded by B23),,,,,,,,true
