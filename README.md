@@ -18,7 +18,7 @@ detection benchmark, using **from-scratch YOLOv8n** training, a pinned optimizer
 
 - **UEP** (a zero-trainable-parameter stage driven by per-image colour-cast and saturation statistics)
   preserves overall mAP50 (**0.806 vs. 0.806**) and lifts the low-saturation *holothurian* class by
-  **+1.7 AP50 points** at zero parameters and ≈ 20 ms/image on a single CPU thread.
+  **+1.7 AP50 points** at zero parameters and ≈ 40 ms/image for the complete operator on a single CPU thread (see the latency note below; the white-balance stage alone costs 27.8 ms).
 - The benefit is **conditional on train/test consistency**, which is the paper's central result:
   applying UEP **only at test time** drops mAP50 to **0.510 (−29.6 points)**, and training under UEP while
   testing on raw images drops it to **0.641 (−16.5 points)**.

@@ -200,11 +200,13 @@ def bench():
         pass
     img = cv2.imread(str(sorted((DATA / "images/test").glob("*.jpg"))[0]))
     img = cv2.resize(img, (640, 640))
+    def full_uep(im):              # 论文的 UEP：白平衡 + 自适应饱和度（原 bench 误测 wb_only，已更正）
+        return adaptive_saturate(adaptive_white_balance(im, estimate_cast(im)), estimate_saturation(im))
     for _ in range(20):            # warm-up
-        wb_only(img)
+        full_uep(img)
     t0 = time.perf_counter()
     for _ in range(200):
-        wb_only(img)
+        full_uep(img)
     uep_ms = (time.perf_counter() - t0) / 200 * 1000
 
     w = BASE / "runs/detect/B1ws/weights/best.pt"

@@ -1,0 +1,21 @@
+{
+ "note": "The earlier latency_bench.json recorded 'uep_ms_single_thread_median_of_200' = 27.76 ms, but the benchmarked callable was the WHITE-BALANCE STAGE ONLY (bench() timed wb_only). The complete operator used in all experiments is white balance + adaptive saturation.",
+ "training_host_wb_only_ms": 27.76,
+ "training_host": "Intel Xeon Gold 6430 (released before re-measurement)",
+ "development_host": {
+  "machine": "Intel Core i5-1155G7 (development host, Windows)",
+  "opencv": "5.0.0",
+  "numpy": "2.5.3",
+  "protocol": "640x640 BGR uint8; 20 warm-up + 200 timed runs; single OpenCV thread; median reported",
+  "wb_only_ms": 24.45,
+  "full_uep_wb_sat_ms": 40.28,
+  "three_stage_uep_with_clahe_ms": 37.74
+ },
+ "paper_section_4_5_numbers": {
+  "wb_only": "27.8 ms (Xeon Gold 6430)",
+  "full_operator": "40.3 ms (i5-1155G7)",
+  "detection": "6.05 ms (RTX 4090)",
+  "combined_fps": "~22 FPS assuming no CPU/GPU overlap"
+ },
+ "operator_definition": "scripts/m4_wb_sat_multiseed.py -> wb_sat_enhance() = adaptive_white_balance(estimate_cast(img)) then adaptive_saturate(estimate_saturation(img))"
+}
