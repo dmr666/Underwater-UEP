@@ -1,0 +1,14 @@
+{
+ "model": "only-clahe",
+ "tag": "clahe",
+ "seed": 1,
+ "yaml": "DUO_clahe.yaml",
+ "mAP50": 0.7892,
+ "mAP50_95": 0.573,
+ "per_class_AP50": {
+  "holothurian": 0.7758,
+  "echinus": 0.9121,
+  "scallop": 0.592,
+  "starfish": 0.8768
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "model": "raw(B0)",
+ "tag": "B0",
+ "seed": 0,
+ "yaml": "DUO.yaml",
+ "mAP50": 0.8047,
+ "mAP50_95": 0.603,
+ "per_class_AP50": {
+  "holothurian": 0.7874,
+  "echinus": 0.9164,
+  "scallop": 0.6025,
+  "starfish": 0.9124
+ }
+}

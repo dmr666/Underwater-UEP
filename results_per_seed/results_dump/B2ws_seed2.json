@@ -1,0 +1,14 @@
+{
+ "model": "UEP+LCA(B2)",
+ "tag": "B2ws",
+ "seed": 2,
+ "yaml": "DUO_wb_sat.yaml",
+ "mAP50": 0.8101,
+ "mAP50_95": 0.6077,
+ "per_class_AP50": {
+  "holothurian": 0.8088,
+  "echinus": 0.9155,
+  "scallop": 0.608,
+  "starfish": 0.908
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "model": "only-wb",
+ "tag": "wb",
+ "seed": 1,
+ "yaml": "DUO_wb.yaml",
+ "mAP50": 0.8142,
+ "mAP50_95": 0.6079,
+ "per_class_AP50": {
+  "holothurian": 0.8129,
+  "echinus": 0.9148,
+  "scallop": 0.6249,
+  "starfish": 0.9041
+ }
+}

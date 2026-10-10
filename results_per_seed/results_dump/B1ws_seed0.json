@@ -1,0 +1,14 @@
+{
+ "model": "UEP-wb_sat(B1)",
+ "tag": "B1ws",
+ "seed": 0,
+ "yaml": "DUO_wb_sat.yaml",
+ "mAP50": 0.8086,
+ "mAP50_95": 0.6032,
+ "per_class_AP50": {
+  "holothurian": 0.8087,
+  "echinus": 0.9161,
+  "scallop": 0.6014,
+  "starfish": 0.9082
+ }
+}

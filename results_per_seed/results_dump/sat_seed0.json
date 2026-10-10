@@ -1,0 +1,14 @@
+{
+ "model": "only-sat",
+ "tag": "sat",
+ "seed": 0,
+ "yaml": "DUO_sat.yaml",
+ "mAP50": 0.8116,
+ "mAP50_95": 0.6112,
+ "per_class_AP50": {
+  "holothurian": 0.7881,
+  "echinus": 0.9179,
+  "scallop": 0.6287,
+  "starfish": 0.9119
+ }
+}
