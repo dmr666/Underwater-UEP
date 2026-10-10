@@ -1,0 +1,32 @@
+# 3-seed summary (mean +- sample sd, ddof=1)
+
+raw(B0)            n=3  mAP50=0.8058+-0.0045  mAP50-95=0.6050+-0.0040
+    holothurian  0.7886+-0.0127
+    echinus      0.9166+-0.0012
+    scallop      0.6050+-0.0042
+    starfish     0.9130+-0.0022
+UEP-wb_sat(B1)     n=3  mAP50=0.8064+-0.0022  mAP50-95=0.5995+-0.0037
+    holothurian  0.8053+-0.0030
+    echinus      0.9149+-0.0025
+    scallop      0.5982+-0.0030
+    starfish     0.9072+-0.0009
+only-wb            n=3  mAP50=0.8146+-0.0056  mAP50-95=0.6068+-0.0013
+    holothurian  0.8147+-0.0022
+    echinus      0.9152+-0.0005
+    scallop      0.6232+-0.0254
+    starfish     0.9052+-0.0023
+only-clahe         n=3  mAP50=0.7863+-0.0070  mAP50-95=0.5715+-0.0045
+    holothurian  0.7779+-0.0047
+    echinus      0.9094+-0.0029
+    scallop      0.5783+-0.0283
+    starfish     0.8796+-0.0039
+only-sat           n=3  mAP50=0.8090+-0.0039  mAP50-95=0.6083+-0.0059
+    holothurian  0.7883+-0.0090
+    echinus      0.9162+-0.0021
+    scallop      0.6211+-0.0073
+    starfish     0.9106+-0.0013
+UEP+LCA(B2)        n=3  mAP50=0.8114+-0.0012  mAP50-95=0.6052+-0.0024
+    holothurian  0.8113+-0.0028
+    echinus      0.9153+-0.0012
+    scallop      0.6112+-0.0029
+    starfish     0.9078+-0.0010

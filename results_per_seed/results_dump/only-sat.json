@@ -1,0 +1,16 @@
+[
+ {
+  "name": "B1_sat",
+  "yaml": "DUO_sat.yaml",
+  "mAP50": 0.81165,
+  "mAP50_95": 0.611239,
+  "per_class_AP50": {
+   "holothurian": 0.788069,
+   "echinus": 0.917941,
+   "scallop": 0.628672,
+   "starfish": 0.911916
+  },
+  "seed": 0,
+  "config": "only-sat"
+ }
+]

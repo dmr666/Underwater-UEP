@@ -1,0 +1,44 @@
+[
+ {
+  "name": "B0_v2",
+  "yaml": "DUO.yaml",
+  "mAP50": 0.804667,
+  "mAP50_95": 0.603038,
+  "per_class_AP50": {
+   "holothurian": 0.787422,
+   "echinus": 0.9164,
+   "scallop": 0.602491,
+   "starfish": 0.912355
+  },
+  "seed": 0,
+  "config": "raw(B0)"
+ },
+ {
+  "name": "B0_s1",
+  "yaml": "DUO.yaml",
+  "mAP50": 0.801978,
+  "mAP50_95": 0.602341,
+  "per_class_AP50": {
+   "holothurian": 0.776534,
+   "echinus": 0.917757,
+   "scallop": 0.60255,
+   "starfish": 0.911069
+  },
+  "seed": 1,
+  "config": "raw(B0)"
+ },
+ {
+  "name": "B0_s2",
+  "yaml": "DUO.yaml",
+  "mAP50": 0.810663,
+  "mAP50_95": 0.609577,
+  "per_class_AP50": {
+   "holothurian": 0.801762,
+   "echinus": 0.915549,
+   "scallop": 0.609926,
+   "starfish": 0.915415
+  },
+  "seed": 2,
+  "config": "raw(B0)"
+ }
+]

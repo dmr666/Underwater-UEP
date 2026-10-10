@@ -1,0 +1,270 @@
+{
+ "raw(B0)": [
+  {
+   "name": "B0_v2",
+   "yaml": "DUO.yaml",
+   "mAP50": 0.804667,
+   "mAP50_95": 0.603038,
+   "per_class_AP50": {
+    "holothurian": 0.787422,
+    "echinus": 0.9164,
+    "scallop": 0.602491,
+    "starfish": 0.912355
+   },
+   "seed": 0,
+   "config": "raw(B0)"
+  },
+  {
+   "name": "B0_s1",
+   "yaml": "DUO.yaml",
+   "mAP50": 0.801978,
+   "mAP50_95": 0.602341,
+   "per_class_AP50": {
+    "holothurian": 0.776534,
+    "echinus": 0.917757,
+    "scallop": 0.60255,
+    "starfish": 0.911069
+   },
+   "seed": 1,
+   "config": "raw(B0)"
+  },
+  {
+   "name": "B0_s2",
+   "yaml": "DUO.yaml",
+   "mAP50": 0.810663,
+   "mAP50_95": 0.609577,
+   "per_class_AP50": {
+    "holothurian": 0.801762,
+    "echinus": 0.915549,
+    "scallop": 0.609926,
+    "starfish": 0.915415
+   },
+   "seed": 2,
+   "config": "raw(B0)"
+  }
+ ],
+ "UEP-wb_sat(B1)": [
+  {
+   "name": "B1ws",
+   "yaml": "DUO_wb_sat.yaml",
+   "mAP50": 0.808578,
+   "mAP50_95": 0.60323,
+   "per_class_AP50": {
+    "holothurian": 0.80872,
+    "echinus": 0.916071,
+    "scallop": 0.601363,
+    "starfish": 0.908158
+   },
+   "seed": 0,
+   "config": "UEP-wb_sat(B1)"
+  },
+  {
+   "name": "B1ws_s1",
+   "yaml": "DUO_wb_sat.yaml",
+   "mAP50": 0.804317,
+   "mAP50_95": 0.595801,
+   "per_class_AP50": {
+    "holothurian": 0.802957,
+    "echinus": 0.912138,
+    "scallop": 0.595481,
+    "starfish": 0.906694
+   },
+   "seed": 1,
+   "config": "UEP-wb_sat(B1)"
+  },
+  {
+   "name": "B1ws_s2",
+   "yaml": "DUO_wb_sat.yaml",
+   "mAP50": 0.806269,
+   "mAP50_95": 0.599455,
+   "per_class_AP50": {
+    "holothurian": 0.804237,
+    "echinus": 0.916643,
+    "scallop": 0.597607,
+    "starfish": 0.906588
+   },
+   "seed": 2,
+   "config": "UEP-wb_sat(B1)"
+  }
+ ],
+ "UEP+LCA(B2)": [
+  {
+   "name": "B2ws",
+   "yaml": "DUO_wb_sat.yaml",
+   "mAP50": 0.812381,
+   "mAP50_95": 0.604908,
+   "per_class_AP50": {
+    "holothurian": 0.814272,
+    "echinus": 0.916366,
+    "scallop": 0.61208,
+    "starfish": 0.906806
+   },
+   "seed": 0,
+   "config": "UEP+LCA(B2)"
+  },
+  {
+   "name": "B2ws_s1",
+   "yaml": "DUO_wb_sat.yaml",
+   "mAP50": 0.811749,
+   "mAP50_95": 0.603029,
+   "per_class_AP50": {
+    "holothurian": 0.810765,
+    "echinus": 0.913985,
+    "scallop": 0.613513,
+    "starfish": 0.908732
+   },
+   "seed": 1,
+   "config": "UEP+LCA(B2)"
+  },
+  {
+   "name": "B2ws_s2",
+   "yaml": "DUO_wb_sat.yaml",
+   "mAP50": 0.810069,
+   "mAP50_95": 0.607724,
+   "per_class_AP50": {
+    "holothurian": 0.80884,
+    "echinus": 0.91548,
+    "scallop": 0.607974,
+    "starfish": 0.907983
+   },
+   "seed": 2,
+   "config": "UEP+LCA(B2)"
+  }
+ ],
+ "only-wb": [
+  {
+   "name": "B1_wb",
+   "yaml": "DUO_wb.yaml",
+   "mAP50": 0.809218,
+   "mAP50_95": 0.605438,
+   "per_class_AP50": {
+    "holothurian": 0.817152,
+    "echinus": 0.915095,
+    "scallop": 0.596869,
+    "starfish": 0.907755
+   },
+   "seed": 0,
+   "config": "only-wb"
+  }
+ ],
+ "only-clahe": [
+  {
+   "name": "B1_clahe",
+   "yaml": "DUO_clahe.yaml",
+   "mAP50": 0.791403,
+   "mAP50_95": 0.574955,
+   "per_class_AP50": {
+    "holothurian": 0.774631,
+    "echinus": 0.909804,
+    "scallop": 0.597056,
+    "starfish": 0.88412
+   },
+   "seed": 0,
+   "config": "only-clahe"
+  }
+ ],
+ "only-sat": [
+  {
+   "name": "B1_sat",
+   "yaml": "DUO_sat.yaml",
+   "mAP50": 0.81165,
+   "mAP50_95": 0.611239,
+   "per_class_AP50": {
+    "holothurian": 0.788069,
+    "echinus": 0.917941,
+    "scallop": 0.628672,
+    "starfish": 0.911916
+   },
+   "seed": 0,
+   "config": "only-sat"
+  }
+ ],
+ "raw training (B0) on WB+sat test": [
+  {
+   "name": "B0_v2",
+   "yaml": "DUO_wb_sat.yaml",
+   "mAP50": 0.508034,
+   "mAP50_95": 0.350693,
+   "per_class_AP50": {
+    "holothurian": 0.314827,
+    "echinus": 0.805366,
+    "scallop": 0.163158,
+    "starfish": 0.748786
+   },
+   "seed": 0,
+   "config": "raw training (B0) on WB+sat test"
+  },
+  {
+   "name": "B0_s1",
+   "yaml": "DUO_wb_sat.yaml",
+   "mAP50": 0.492713,
+   "mAP50_95": 0.328718,
+   "per_class_AP50": {
+    "holothurian": 0.281349,
+    "echinus": 0.790459,
+    "scallop": 0.157939,
+    "starfish": 0.741105
+   },
+   "seed": 1,
+   "config": "raw training (B0) on WB+sat test"
+  },
+  {
+   "name": "B0_s2",
+   "yaml": "DUO_wb_sat.yaml",
+   "mAP50": 0.530221,
+   "mAP50_95": 0.360315,
+   "per_class_AP50": {
+    "holothurian": 0.353699,
+    "echinus": 0.824684,
+    "scallop": 0.172284,
+    "starfish": 0.770217
+   },
+   "seed": 2,
+   "config": "raw training (B0) on WB+sat test"
+  }
+ ],
+ "WB+sat training (B1) on raw test": [
+  {
+   "name": "B1ws",
+   "yaml": "DUO.yaml",
+   "mAP50": 0.60711,
+   "mAP50_95": 0.414945,
+   "per_class_AP50": {
+    "holothurian": 0.549709,
+    "echinus": 0.878272,
+    "scallop": 0.414502,
+    "starfish": 0.585956
+   },
+   "seed": 0,
+   "config": "WB+sat training (B1) on raw test"
+  },
+  {
+   "name": "B1ws_s1",
+   "yaml": "DUO.yaml",
+   "mAP50": 0.617112,
+   "mAP50_95": 0.4179,
+   "per_class_AP50": {
+    "holothurian": 0.56084,
+    "echinus": 0.874828,
+    "scallop": 0.437864,
+    "starfish": 0.594917
+   },
+   "seed": 1,
+   "config": "WB+sat training (B1) on raw test"
+  },
+  {
+   "name": "B1ws_s2",
+   "yaml": "DUO.yaml",
+   "mAP50": 0.699963,
+   "mAP50_95": 0.484456,
+   "per_class_AP50": {
+    "holothurian": 0.659837,
+    "echinus": 0.890681,
+    "scallop": 0.524384,
+    "starfish": 0.724951
+   },
+   "seed": 2,
+   "config": "WB+sat training (B1) on raw test"
+  }
+ ]
+}

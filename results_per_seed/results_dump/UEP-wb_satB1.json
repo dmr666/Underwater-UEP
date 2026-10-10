@@ -1,0 +1,44 @@
+[
+ {
+  "name": "B1ws",
+  "yaml": "DUO_wb_sat.yaml",
+  "mAP50": 0.808578,
+  "mAP50_95": 0.60323,
+  "per_class_AP50": {
+   "holothurian": 0.80872,
+   "echinus": 0.916071,
+   "scallop": 0.601363,
+   "starfish": 0.908158
+  },
+  "seed": 0,
+  "config": "UEP-wb_sat(B1)"
+ },
+ {
+  "name": "B1ws_s1",
+  "yaml": "DUO_wb_sat.yaml",
+  "mAP50": 0.804317,
+  "mAP50_95": 0.595801,
+  "per_class_AP50": {
+   "holothurian": 0.802957,
+   "echinus": 0.912138,
+   "scallop": 0.595481,
+   "starfish": 0.906694
+  },
+  "seed": 1,
+  "config": "UEP-wb_sat(B1)"
+ },
+ {
+  "name": "B1ws_s2",
+  "yaml": "DUO_wb_sat.yaml",
+  "mAP50": 0.806269,
+  "mAP50_95": 0.599455,
+  "per_class_AP50": {
+   "holothurian": 0.804237,
+   "echinus": 0.916643,
+   "scallop": 0.597607,
+   "starfish": 0.906588
+  },
+  "seed": 2,
+  "config": "UEP-wb_sat(B1)"
+ }
+]

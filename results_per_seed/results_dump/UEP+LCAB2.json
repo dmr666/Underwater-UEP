@@ -1,0 +1,44 @@
+[
+ {
+  "name": "B2ws",
+  "yaml": "DUO_wb_sat.yaml",
+  "mAP50": 0.812381,
+  "mAP50_95": 0.604908,
+  "per_class_AP50": {
+   "holothurian": 0.814272,
+   "echinus": 0.916366,
+   "scallop": 0.61208,
+   "starfish": 0.906806
+  },
+  "seed": 0,
+  "config": "UEP+LCA(B2)"
+ },
+ {
+  "name": "B2ws_s1",
+  "yaml": "DUO_wb_sat.yaml",
+  "mAP50": 0.811749,
+  "mAP50_95": 0.603029,
+  "per_class_AP50": {
+   "holothurian": 0.810765,
+   "echinus": 0.913985,
+   "scallop": 0.613513,
+   "starfish": 0.908732
+  },
+  "seed": 1,
+  "config": "UEP+LCA(B2)"
+ },
+ {
+  "name": "B2ws_s2",
+  "yaml": "DUO_wb_sat.yaml",
+  "mAP50": 0.810069,
+  "mAP50_95": 0.607724,
+  "per_class_AP50": {
+   "holothurian": 0.80884,
+   "echinus": 0.91548,
+   "scallop": 0.607974,
+   "starfish": 0.907983
+  },
+  "seed": 2,
+  "config": "UEP+LCA(B2)"
+ }
+]

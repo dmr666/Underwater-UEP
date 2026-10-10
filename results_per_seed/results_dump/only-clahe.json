@@ -1,0 +1,16 @@
+[
+ {
+  "name": "B1_clahe",
+  "yaml": "DUO_clahe.yaml",
+  "mAP50": 0.791403,
+  "mAP50_95": 0.574955,
+  "per_class_AP50": {
+   "holothurian": 0.774631,
+   "echinus": 0.909804,
+   "scallop": 0.597056,
+   "starfish": 0.88412
+  },
+  "seed": 0,
+  "config": "only-clahe"
+ }
+]

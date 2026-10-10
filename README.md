@@ -105,3 +105,41 @@ If you use these artifacts, please cite the paper (journal reference to be added
 ## Contact
 
 Lihua Dai — 694169145@qq.com — ORCID 0009-0000-9133-7116
+
+
+## Revision evidence (tag `v1.1-revision`)
+
+Added for the revised manuscript (single-author controlled study):
+
+**Single-component ablation, 3 seeds.** Six configurations were trained and evaluated
+under the identical protocol (150 epochs, AdamW lr0=0.00125, batch 8, 640x640, seeds 0-2,
+no early stopping), each with the matching test-set operator:
+
+| Configuration | mAP50 (n=3) | mAP50-95 (n=3) |
+|---|---|---|
+| raw (B0) | 0.8058 +/- 0.0045 | 0.6050 +/- 0.0040 |
+| UEP WB+sat (B1) | 0.8064 +/- 0.0022 | 0.5995 +/- 0.0037 |
+| UEP+LCA (B2) | 0.8114 +/- 0.0012 | 0.6052 +/- 0.0024 |
+| WB only | 0.8146 +/- 0.0056 | 0.6068 +/- 0.0013 |
+| sat only | 0.8090 +/- 0.0039 | 0.6083 +/- 0.0059 |
+| CLAHE only | 0.7863 +/- 0.0070 | 0.5715 +/- 0.0045 |
+
+Per-seed, per-class values: `results_per_seed/results_dump/`; the summary including the
+per-class tables and the train/test cross-evaluation is `results_per_seed/per_seed_summary.txt`.
+Relative to raw, only CLAHE-only differs significantly (mAP50 -0.0195, independent-samples
+t-test, df = 4, p = 0.015).
+
+**Timing protocol.** `results_per_seed/latency_bench.json` records the exact measurement
+conditions: Intel Xeon Gold 6430 host, OpenCV 5.0.0, NumPy 1.26.4, PyTorch 2.1.2+cu118,
+pinned ultralytics 8.3.123, RTX 4090. UEP costs 27.8 ms per 640x640 BGR uint8 frame on a
+single CPU thread (median of 200 timed runs after 20 warm-up iterations); the detector
+costs 6.05 ms per frame (median of 50 timed runs after 10 warm-up iterations, measured
+after torch.cuda.synchronize()).
+
+**Scripts.** `scripts/p7_3_ablation.py` runs the six training runs plus the per-seed
+evaluation and the latency benchmark; `scripts/per_seed_dump.py` produces the per-seed,
+per-class dumps and the cross-evaluation; `scripts/table3_class_stats.py` recomputes the
+per-class color-cast/saturation statistics from the dataset.
+
+**Note.** `results/m2_result.txt` and `results/m2_perclass.txt` come from an earlier
+checkpoint set; see `results_per_seed/NOTE_m2_files_are_stale.md`.

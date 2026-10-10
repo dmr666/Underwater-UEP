@@ -1,0 +1,14 @@
+{
+ "cpu_model": "Intel(R) Xeon(R) Gold 6430",
+ "cpu_count": 128,
+ "opencv": "5.0.0",
+ "numpy": "1.26.4",
+ "torch": "2.1.2+cu118",
+ "cuda": "11.8",
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "ultralytics": "8.3.123",
+ "platform": "Linux-5.15.0-94-generic-x86_64-with-glibc2.35",
+ "uep_ms_single_thread_median_of_200": 27.76,
+ "detection_ms_median_of_50": 6.05,
+ "protocol": "UEP: 640x640 BGR uint8, 20 warm-up + 200 timed runs, single thread (OpenCV); detection: ultralytics predict() on GPU after torch.cuda.synchronize(), 10 warm-up + 50 timed"
+}

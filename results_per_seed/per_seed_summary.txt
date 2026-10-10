@@ -1,0 +1,61 @@
+# 逐种子 / 3 种子汇总（样本标准差 ddof=1）
+
+raw(B0)                            n=3  mAP50=0.8058±0.0044  mAP50-95=0.6050±0.0040
+      holothurian  0.7886±0.0127
+      echinus      0.9166±0.0011
+      scallop      0.6050±0.0043
+      starfish     0.9129±0.0022
+
+UEP-wb_sat(B1)                     n=3  mAP50=0.8064±0.0021  mAP50-95=0.5995±0.0037
+      holothurian  0.8053±0.0030
+      echinus      0.9150±0.0025
+      scallop      0.5982±0.0030
+      starfish     0.9071±0.0009
+
+UEP+LCA(B2)                        n=3  mAP50=0.8114±0.0012  mAP50-95=0.6052±0.0024
+      holothurian  0.8113±0.0028
+      echinus      0.9153±0.0012
+      scallop      0.6112±0.0029
+      starfish     0.9078±0.0010
+
+only-wb                            n=1  mAP50=0.8092±0.0000  mAP50-95=0.6054±0.0000
+      holothurian  0.8172±0.0000
+      echinus      0.9151±0.0000
+      scallop      0.5969±0.0000
+      starfish     0.9078±0.0000
+
+only-clahe                         n=1  mAP50=0.7914±0.0000  mAP50-95=0.5750±0.0000
+      holothurian  0.7746±0.0000
+      echinus      0.9098±0.0000
+      scallop      0.5971±0.0000
+      starfish     0.8841±0.0000
+
+only-sat                           n=1  mAP50=0.8116±0.0000  mAP50-95=0.6112±0.0000
+      holothurian  0.7881±0.0000
+      echinus      0.9179±0.0000
+      scallop      0.6287±0.0000
+      starfish     0.9119±0.0000
+
+raw training (B0) on WB+sat test   n=3  mAP50=0.5103±0.0189  mAP50-95=0.3466±0.0162
+      holothurian  0.3166±0.0362
+      echinus      0.8068±0.0172
+      scallop      0.1645±0.0073
+      starfish     0.7534±0.0151
+
+WB+sat training (B1) on raw test   n=3  mAP50=0.6414±0.0510  mAP50-95=0.4391±0.0393
+      holothurian  0.5901±0.0606
+      echinus      0.8813±0.0083
+      scallop      0.4589±0.0579
+      starfish     0.6353±0.0778
+
+# 论文关键统计量的复算（Welch，独立样本，n=3）
+  B1 vs B0 mAP50    : t=-0.22 p=0.842 (论文: mAP50 t=0.21 p=0.84; mAP50-95 t=1.73 p=0.16)
+  B1 vs B0 mAP50_95 : t=1.74 p=0.156 (论文: mAP50 t=0.21 p=0.84; mAP50-95 t=1.73 p=0.16)
+  B2 vs B1 mAP50    : t=-3.55 p=0.035 (论文: t=3.53 p=0.024)
+  B2 vs B1 mAP50-95 : t=-2.25 p=0.099 (论文: p=0.088)
+  B2 vs B1 holothurian : diff=+0.0060 t=-2.53 p=0.0649
+  B2 vs B1 echinus     : diff=+0.0003 t=-0.21 p=0.8497
+  B2 vs B1 scallop     : diff=+0.0130 t=-5.46 p=0.0055
+  B2 vs B1 starfish    : diff=+0.0007 t=-0.92 p=0.4110
+  Holm 校正后逐类 p: holothurian=0.1947, echinus=0.8497, scallop=0.0220, starfish=0.8220
+  逐种子增益 B2-B1 (mAP50): +0.0038, +0.0074, +0.0038
