@@ -1,6 +1,6 @@
-# make_fig1_pipeline.py — 重画图 1（UEP 流水线示意）
-# 修正：降质估计框删除未定义的 "contrast σ"；自适应增强框删除 "CLAHE"（UEP 实际为白平衡 + 自适应饱和度）
-# 输出：figures/uep_pipeline.pdf（矢量，供 LaTeX）+ figures/uep_pipeline.png（预览）
+# make_fig1_pipeline.py — 图 1（UEP 流水线示意）
+# ① 删掉未定义的 "contrast σ"；② 删掉 "CLAHE"（UEP 实为白平衡 + 自适应饱和度）；
+# ③ 设计尺寸 = 单栏成稿尺寸（3.30 in 宽，满栏 \columnwidth 排版），保证渲染后图内文字 ≥6 pt。
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -11,8 +11,7 @@ plt.rcParams.update({
     "font.family": "serif",
     "font.serif": ["Times New Roman", "DejaVu Serif"],
     "mathtext.fontset": "stix",
-    "pdf.fonttype": 42,
-    "ps.fonttype": 42,
+    "pdf.fonttype": 42, "ps.fonttype": 42,
 })
 
 OUT = Path(__file__).resolve().parent.parent / "manuscript" / "figures"
@@ -22,58 +21,56 @@ BLUE, YELL, GRN, PINK, GREY = "#DCE9F7", "#FDF6D8", "#DDF0DC", "#FBE4E4", "#F2F2
 EDGE = {"blue": "#2E4E7E", "yel": "#B8860B", "grn": "#2F7A3A", "pink": "#8B2E4A", "grey": "#7A7A7A"}
 TEAL = "#127C86"
 
-fig, ax = plt.subplots(figsize=(10.5, 3.25), dpi=300)
+fig, ax = plt.subplots(figsize=(3.30, 1.72), dpi=400)
 ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis("off")
 
-Y0, Y1 = 0.44, 0.72          # 主行所有方框的上下沿
-
-def box(x0, y0, x1, y1, fill, edge, text, fs=10.5, head=None, dashed=False, round_=0.022, gray_text=False):
+def rbox(x0, y0, x1, y1, fill, edge, dashed=False, round_=0.03, lw=1.0):
     ax.add_patch(FancyBboxPatch((x0, y0), x1 - x0, y1 - y0,
-                 boxstyle=f"round,pad=0.004,rounding_size={round_}",
-                 linewidth=1.3, edgecolor=edge, facecolor=fill,
-                 linestyle=(0, (5, 3)) if dashed else "solid"))
-    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-    col = "#444444" if gray_text else "#111111"
-    if head:
-        ax.text(cx, cy + 0.075, head, ha="center", va="center", fontsize=fs, color=col)
-        ax.text(cx, cy - 0.062, text, ha="center", va="center", fontsize=fs - 1.2, color=col)
-    else:
-        ax.text(cx, cy, text, ha="center", va="center", fontsize=fs, color=col, linespacing=1.5)
+                 boxstyle=f"round,pad=0.006,rounding_size={round_}",
+                 linewidth=lw, edgecolor=edge, facecolor=fill,
+                 linestyle=(0, (4, 2.4)) if dashed else "solid"))
 
-def arrow(x0, y0, x1, y1, dashed=False, lw=1.3, ms=10):
+def txt(x, y, s, fs=7.2, col="#000000", bold=False, italic=False, bg=False, ha="center", va="center"):
+    ax.text(x, y, s, ha=ha, va=va, fontsize=fs, color=col,
+            fontweight="bold" if bold else "normal", style="italic" if italic else "normal",
+            linespacing=1.35,
+            bbox=dict(facecolor="white", edgecolor="none", pad=0.9) if bg else None)
+
+def arrow(x0, y0, x1, y1, dashed=False, ms=6.5, lw=1.0):
     ax.add_patch(FancyArrowPatch((x0, y0), (x1, y1),
-                 arrowstyle=f"-|>,head_width={ms/42},head_length={ms/26}",
+                 arrowstyle=f"-|>,head_width={ms/28},head_length={ms/18}",
                  linewidth=lw, color="black", shrinkA=0, shrinkB=0,
-                 linestyle=(0, (4, 3)) if dashed else "solid", mutation_scale=ms))
+                 linestyle=(0, (3, 2)) if dashed else "solid", mutation_scale=ms))
 
-# UEP 虚线容器 + 标题
-box(0.128, 0.30, 0.548, 0.845, "none", TEAL, "", dashed=True, round_=0.012)
-ax.text((0.128 + 0.548) / 2, 0.905, "UEP (zero trainable parameters)",
-        ha="center", va="center", fontsize=10.5, color=TEAL, fontweight="bold")
+# ---- UEP 容器（顶边下移到 0.90，标题置于其上不再被虚线穿过）----
+rbox(0.245, 0.235, 0.735, 0.90, "none", TEAL, dashed=True, round_=0.02)
+txt(0.49, 0.955, "UEP (zero trainable parameters)", fs=7.2, col=TEAL, bold=True)
 
-# 主行
-box(0.012, Y0 + 0.03, 0.108, Y1 - 0.03, BLUE, EDGE["blue"], "Input image\n$I$ (BGR)")
-box(0.158, Y0, 0.318, Y1, YELL, EDGE["yel"], r"color cast $c$ $\cdot$ saturation $s$",
-    head="Degradation estimation", fs=9.6)
-box(0.348, Y0, 0.518, Y1, GRN, EDGE["grn"], r"white balance $\cdot$ adaptive saturation",
-    head="Adaptive enhancement", fs=9.6)
-box(0.578, Y0 + 0.03, 0.668, Y1 - 0.03, BLUE, EDGE["blue"], "Enhanced image\n$\\hat{I}$")
-box(0.698, Y0, 0.836, Y1, PINK, EDGE["pink"], "backbone + neck + head", head="YOLOv8n", fs=10)
-box(0.866, Y0, 0.996, Y1, PINK, EDGE["pink"], "holothurian $\\cdot$ echinus\nscallop $\\cdot$ starfish",
-    head="Detections", fs=9.6)
+# ---- 左：输入 ----
+rbox(0.015, 0.50, 0.212, 0.80, BLUE, EDGE["blue"])
+txt(0.1135, 0.65, "Input\n$I$ (BGR)", fs=7.6)
+# ---- 容器内两个子块 ----
+rbox(0.275, 0.615, 0.705, 0.865, YELL, EDGE["yel"])
+txt(0.49, 0.795, "Degradation estimation", fs=7.4, bold=True)
+txt(0.49, 0.675, "color cast $c$, saturation $s$", fs=6.8)
+rbox(0.275, 0.285, 0.705, 0.545, GRN, EDGE["grn"])
+txt(0.49, 0.475, "Adaptive enhancement", fs=7.4, bold=True)
+txt(0.49, 0.355, "white balance $+$ adaptive saturation", fs=6.8)
+# ---- 右：检测器 ----
+rbox(0.760, 0.50, 0.998, 0.80, PINK, EDGE["pink"])
+txt(0.879, 0.65, "YOLOv8n", fs=7.4)
+# ---- 下：LCA（虚线，排除）----
+rbox(0.760, 0.03, 0.998, 0.40, GREY, EDGE["grey"], dashed=True)
+txt(0.879, 0.315, "LCA (309 p.)", fs=7.0, col="#3A3A3A")
+txt(0.879, 0.165, "studied,\nexcluded", fs=7.0, col="#3A3A3A")
 
-# 主行箭头
-for xa, xb in [(0.110, 0.156), (0.320, 0.346), (0.520, 0.576), (0.670, 0.696), (0.838, 0.864)]:
-    arrow(xa, (Y0 + Y1) / 2, xb, (Y0 + Y1) / 2)
+arrow(0.214, 0.65, 0.273, 0.74)
+arrow(0.49, 0.612, 0.49, 0.548)
+arrow(0.707, 0.74, 0.758, 0.74)
+arrow(0.879, 0.404, 0.879, 0.485, dashed=True, ms=5.5)
+txt(0.755, 0.445, "inserted at neck\nP3/P4/P5", fs=5.8, col="#333333", italic=True, ha="left", bg=True)
 
-# LCA 支路
-box(0.678, 0.115, 0.812, 0.29, GREY, EDGE["grey"], "LCA (309 params)\nstudied $\\cdot$ excluded",
-    dashed=True, fs=9.2, gray_text=True)
-arrow(0.745, 0.292, 0.745, Y0 - 0.004, dashed=True, lw=1.0, ms=8)
-ax.text(0.735, 0.352, "inserted at neck\nP3/P4/P5", ha="right", va="center",
-        fontsize=7.6, color="#333333", style="italic", linespacing=1.4)
-
-fig.subplots_adjust(left=0.004, right=0.996, top=0.99, bottom=0.01)
+fig.subplots_adjust(left=0.004, right=0.996, top=0.995, bottom=0.005)
 fig.savefig(OUT / "uep_pipeline.pdf", format="pdf")
-fig.savefig(OUT / "uep_pipeline.png", format="png", dpi=200)
+fig.savefig(OUT / "uep_pipeline.png", format="png", dpi=400)
 print("written:", OUT / "uep_pipeline.pdf")
