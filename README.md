@@ -131,10 +131,13 @@ t-test, df = 4, p = 0.015).
 
 **Timing protocol.** `results_per_seed/latency_bench.json` records the exact measurement
 conditions: Intel Xeon Gold 6430 host, OpenCV 5.0.0, NumPy 1.26.4, PyTorch 2.1.2+cu118,
-pinned ultralytics 8.3.123, RTX 4090. UEP costs 27.8 ms per 640x640 BGR uint8 frame on a
-single CPU thread (median of 200 timed runs after 20 warm-up iterations); the detector
-costs 6.05 ms per frame (median of 50 timed runs after 10 warm-up iterations, measured
-after torch.cuda.synchronize()).
+pinned ultralytics 8.3.123, RTX 4090. On that host the **white-balance stage alone** costs
+27.8 ms per 640x640 BGR uint8 frame on a single CPU thread (median of 200 timed runs after
+20 warm-up iterations), whereas the **complete UEP operator** costs 40.3 ms (median of 200
+runs; i5-1155G7 host, OpenCV 5.0.0) — the Xeon host was released before the complete-operator
+re-measurement, so the two numbers come from different machines: see
+`results_per_seed/latency_bench_v2_full_operator.json`. The detector costs 6.05 ms per frame
+(median of 50 timed runs after 10 warm-up iterations, measured after torch.cuda.synchronize()).
 
 **Scripts.** `scripts/p7_3_ablation.py` runs the six training runs plus the per-seed
 evaluation and the latency benchmark; `scripts/per_seed_dump.py` produces the per-seed,
@@ -143,6 +146,15 @@ per-class color-cast/saturation statistics from the dataset.
 
 **Note.** `results/m2_result.txt` and `results/m2_perclass.txt` come from an earlier
 checkpoint set; see `results_per_seed/NOTE_m2_files_are_stale.md`.
+
+- **Degradation statistics and the adaptivity limit (recomputed 2026-10-11 over all 6,671 training
+  images at the paper's protocol, longest side 512 px):** `scripts/duo_stats.py` →
+  `results_per_seed/duo_stats.json`. Mean color cast 0.514 ± 0.221 (median 0.455) exceeds the
+  clamp threshold 0.25 for **94.7%** of training images (only 5.3% retain any adaptivity;
+  mean α = 0.987); holothurian stays the lowest-saturation class in **99.9%** of 2,000 bootstrap
+  resamples; the two equivalent saturation definitions differ by ≤0.0003 per image (uint8
+  quantization). These numbers back the paper's §3.2/§4.3 statement that on DUO UEP acts as a
+  bounded fixed-strength gray-world correction.
 
 ## Robustness extensions (run 2026-10-11, same protocol)
 
