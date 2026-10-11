@@ -149,11 +149,14 @@ checkpoint set; see `results_per_seed/NOTE_m2_files_are_stale.md`.
 
 - **Degradation statistics and the adaptivity limit (recomputed 2026-10-11 over all 6,671 training
   images at the paper's protocol, longest side 512 px):** `scripts/duo_stats.py` →
-  `results_per_seed/duo_stats.json`. Mean color cast 0.514 ± 0.221 (median 0.455) exceeds the
-  clamp threshold 0.25 for **94.7%** of training images (only 5.3% retain any adaptivity;
-  mean α = 0.987); holothurian stays the lowest-saturation class in **99.9%** of 2,000 bootstrap
-  resamples; the two equivalent saturation definitions differ by ≤0.0003 per image (uint8
-  quantization). These numbers back the paper's §3.2/§4.3 statement that on DUO UEP acts as a
+  `results_per_seed/duo_stats.json`. **Cast definition used here is the one the experiments actually
+  ran (`uep.py::estimate_cast`): `c = max_ch |mean_gray/mean_ch − 1|`** — the manuscript text had the
+  ratio inverted and was corrected to match the code; `duo_stats.py` also stores the inverted variant
+  under `cast_alt_text_mean` for traceability. Mean color cast 0.779 ± 0.709 (median 0.544, quartiles
+  0.382/0.544/0.811) exceeds the clamp threshold 0.25 for **92.0%** of training images (only 8.0%
+  retain any adaptivity; mean α = 0.983); holothurian stays the lowest-saturation class in **99.9%**
+  of 2,000 bootstrap resamples; the two equivalent saturation definitions differ by ≤0.0003 per image
+  (uint8 quantization). These numbers back the paper's §3.2/§4.3 statement that on DUO UEP acts as a
   bounded fixed-strength gray-world correction.
 
 ## Robustness extensions (run 2026-10-11, same protocol)

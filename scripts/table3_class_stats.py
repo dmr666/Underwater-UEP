@@ -1,5 +1,5 @@
 # table3_class_stats.py — 复现论文 Table 3 的逐类退化统计（color cast / saturation）
-# 依据论文定义：c = max_ch |mean_ch/mean_gray - 1|；s = mean over pixels of (max-min)/max；
+# 依据论文定义：c = max_ch |mean_gray/mean_ch - 1| (同 uep.py::estimate_cast)；s = mean over pixels of (max-min)/max；
 # 图像按最长边缩到 512 像素；统计对象为"含该类目标的训练图"。
 # 用法: python scripts/table3_class_stats.py --images /root/autodl-tmp/DUO/images/train \
 #                                            --labels /root/autodl-tmp/DUO/labels/train \
@@ -27,7 +27,7 @@ def stats_of(path: Path):
     f = img.astype(np.float32)
     means = f.reshape(-1, 3).mean(0)
     gray = float(means.mean())
-    cast = float(np.max(np.abs(means / gray - 1.0))) if gray > 0 else 0.0
+    cast = float(np.max(np.abs(gray / means - 1.0))) if gray > 0 else 0.0
     mx, mn = f.max(2), f.min(2)
     sat = float(np.mean((mx - mn) / np.maximum(mx, 1e-6)))
     return cast, sat
@@ -64,7 +64,7 @@ def main() -> None:
         if (i + 1) % 1000 == 0:
             print(f"  {i+1}/{len(files)}", flush=True)
 
-    out = {"definition": "c = max_ch |mean_ch/mean_gray - 1|; s = mean((max-min)/max); images resized to 512 longest side",
+    out = {"definition": "c = max_ch |mean_gray/mean_ch - 1| (同 uep.py::estimate_cast); s = mean((max-min)/max); images resized to 512 longest side",
            "images_scanned": len(files), "images_missing": missing, "classes": {}, "all": {}}
     for c in sorted(per_class):
         v = per_class[c]
