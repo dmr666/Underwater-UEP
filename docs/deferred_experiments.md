@@ -1,7 +1,6 @@
 # Deferred experiments (constant sensitivity / graded enhancement strength)
 
-Two reviewer-facing extensions are specified but **not yet run** (they require GPU time; the study's
-reported conclusions do not depend on them). The runner is `scripts/deferred_experiments.py` and uses the
+Two reviewer-facing extensions were specified as possible robustness checks; **both have now been run** (RTX 4090, same protocol as the paper) and are reported in the revised manuscript (Sec. 4.3). Results: `results_deferred/`. The runner is `scripts/deferred_experiments.py` and uses the
 same protocol as the paper: YOLOv8n from scratch, 150 epochs, batch 8, imgsz 640, AdamW lr0=0.00125,
 patience=0 (early stopping disabled), deterministic, seed 0; noise band taken from the released 3-seed
 baselines (sample s.d. ~0.0045 mAP50).

@@ -1,0 +1,98 @@
+[
+ {
+  "mAP50": 0.8073,
+  "mAP50_95": 0.5963,
+  "per_class_AP50": {
+   "holothurian": 0.8051,
+   "echinus": 0.9125,
+   "scallop": 0.6082,
+   "starfish": 0.9034
+  },
+  "model": "S_wbmax_plus20",
+  "constants": {
+   "wb_max": 1.08,
+   "alpha_clip": 0.25,
+   "sat_max": 1.35
+  }
+ },
+ {
+  "mAP50": 0.8151,
+  "mAP50_95": 0.6129,
+  "per_class_AP50": {
+   "holothurian": 0.8162,
+   "echinus": 0.9161,
+   "scallop": 0.6174,
+   "starfish": 0.9107
+  },
+  "model": "S_wbmax_minus20",
+  "constants": {
+   "wb_max": 0.72,
+   "alpha_clip": 0.25,
+   "sat_max": 1.35
+  }
+ },
+ {
+  "mAP50": 0.8014,
+  "mAP50_95": 0.5963,
+  "per_class_AP50": {
+   "holothurian": 0.8,
+   "echinus": 0.9163,
+   "scallop": 0.5837,
+   "starfish": 0.9058
+  },
+  "model": "S_clip_plus20",
+  "constants": {
+   "wb_max": 0.9,
+   "alpha_clip": 0.3,
+   "sat_max": 1.35
+  }
+ },
+ {
+  "mAP50": 0.8117,
+  "mAP50_95": 0.6038,
+  "per_class_AP50": {
+   "holothurian": 0.8053,
+   "echinus": 0.9155,
+   "scallop": 0.6192,
+   "starfish": 0.9069
+  },
+  "model": "S_clip_minus20",
+  "constants": {
+   "wb_max": 0.9,
+   "alpha_clip": 0.2,
+   "sat_max": 1.35
+  }
+ },
+ {
+  "mAP50": 0.8115,
+  "mAP50_95": 0.6038,
+  "per_class_AP50": {
+   "holothurian": 0.8122,
+   "echinus": 0.917,
+   "scallop": 0.6093,
+   "starfish": 0.9074
+  },
+  "model": "S_satmax_plus20",
+  "constants": {
+   "wb_max": 0.9,
+   "alpha_clip": 0.25,
+   "sat_max": 1.62
+  }
+ },
+ {
+  "mAP50": 0.8127,
+  "mAP50_95": 0.6073,
+  "per_class_AP50": {
+   "holothurian": 0.7983,
+   "echinus": 0.915,
+   "scallop": 0.6304,
+   "starfish": 0.9073
+  },
+  "model": "S_satmax_minus20",
+  "constants": {
+   "wb_max": 0.9,
+   "alpha_clip": 0.25,
+   "sat_max": 1.08
+  }
+ }
+]

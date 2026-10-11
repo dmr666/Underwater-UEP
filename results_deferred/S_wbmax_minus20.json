@@ -1,0 +1,23 @@
+{
+ "mAP50": 0.8151,
+ "mAP50_95": 0.6129,
+ "per_class_AP50": {
+  "holothurian": 0.8162,
+  "echinus": 0.9161,
+  "scallop": 0.6174,
+  "starfish": 0.9107
+ },
+ "model": "S_wbmax_minus20",
+ "train_constants": {
+  "wb_max": 0.72,
+  "alpha_clip": 0.25,
+  "sat_max": 1.35
+ },
+ "test_constants": {
+  "wb_max": 0.72,
+  "alpha_clip": 0.25,
+  "sat_max": 1.35
+ },
+ "yaml": "DUO_S_wbmax_minus20.yaml",
+ "repaired": true
+}

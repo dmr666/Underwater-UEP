@@ -1,0 +1,17 @@
+{
+ "mAP50": 0.8127,
+ "mAP50_95": 0.6073,
+ "per_class_AP50": {
+  "holothurian": 0.7983,
+  "echinus": 0.915,
+  "scallop": 0.6304,
+  "starfish": 0.9073
+ },
+ "model": "S_satmax_minus20",
+ "constants": {
+  "wb_max": 0.9,
+  "alpha_clip": 0.25,
+  "sat_max": 1.08
+ },
+ "derived_from": "summary_sensitivity.json (per-variant dump was superseded during the run; values identical)"
+}

@@ -143,3 +143,18 @@ per-class color-cast/saturation statistics from the dataset.
 
 **Note.** `results/m2_result.txt` and `results/m2_perclass.txt` come from an earlier
 checkpoint set; see `results_per_seed/NOTE_m2_files_are_stale.md`.
+
+## Robustness extensions (run 2026-10-11, same protocol)
+
+**Constant sensitivity (Sec. 4.3).** Each of the three hand-set constants (`wb_max` 0.9, `alpha_clip` 0.25,
+`sat_max` 1.35) was perturbed by +/-20% in turn (six otherwise identical runs, seed 0, 150 epochs).
+Overall mAP50 stays within 0.801--0.815 (mean 0.810) against 0.806 +/- 0.004 for the baseline, with no
+directional effect; the holothurian gain is preserved in all six variants (0.798--0.816 vs. 0.789 +/- 0.013).
+Per-variant results: `results_deferred/S_*.json`, `results_deferred/summary_sensitivity.json`.
+
+**Graded enhancement strength (Sec. 4.3).** With the enhancement applied at half strength, the consistent
+half/half configuration is the strongest result in the study (mAP50 0.818), while mismatch costs
+0.818 -> 0.639 (-17.9 points, trained half / tested full) and 0.806 -> 0.742 (-6.4 points, trained full /
+tested half). Single-seed runs, marked with a dagger in Table 3 of the paper.
+Results: `results_deferred/G_*.json`, `results_deferred/summary_graded.json`; analysis notes in
+`results_deferred/ANALYSIS.md`. Runner: `scripts/deferred_experiments.py` (see `docs/deferred_experiments.md`).
