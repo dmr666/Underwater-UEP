@@ -1,0 +1,15 @@
+{
+ "mAP50": 0.8518,
+ "mAP50_95": 0.6665,
+ "per_class_AP50": {
+  "holothurian": 0.8701,
+  "echinus": 0.9243,
+  "scallop": 0.6873,
+  "starfish": 0.9255
+ },
+ "arm": "P_trainraw_testraw",
+ "train_domain": "raw",
+ "test_domain": "raw",
+ "weights": "/root/autodl-tmp/Underwater/runs/detect/P_raw/weights/best.pt",
+ "yaml": "DUO.yaml"
+}

@@ -1,0 +1,58 @@
+[
+ {
+  "mAP50": 0.8167,
+  "mAP50_95": 0.4871,
+  "per_class_AP50": {
+   "holothurian": 0.7445,
+   "echinus": 0.8824,
+   "scallop": 0.7574,
+   "starfish": 0.8827
+  },
+  "arm": "RUOD_trainraw_testraw",
+  "train_domain": "raw",
+  "test_domain": "raw",
+  "yaml": "RUOD.yaml"
+ },
+ {
+  "mAP50": 0.5793,
+  "mAP50_95": 0.3295,
+  "per_class_AP50": {
+   "holothurian": 0.5631,
+   "echinus": 0.7523,
+   "scallop": 0.2467,
+   "starfish": 0.7551
+  },
+  "arm": "RUOD_trainraw_testuep",
+  "train_domain": "raw",
+  "test_domain": "uep",
+  "yaml": "DUO_uep.yaml"
+ },
+ {
+  "mAP50": 0.625,
+  "mAP50_95": 0.3637,
+  "per_class_AP50": {
+   "holothurian": 0.5948,
+   "echinus": 0.8515,
+   "scallop": 0.4343,
+   "starfish": 0.6195
+  },
+  "arm": "RUOD_trainuep_testraw",
+  "train_domain": "uep",
+  "test_domain": "raw",
+  "yaml": "RUOD.yaml"
+ },
+ {
+  "mAP50": 0.8211,
+  "mAP50_95": 0.4932,
+  "per_class_AP50": {
+   "holothurian": 0.7683,
+   "echinus": 0.8863,
+   "scallop": 0.75,
+   "starfish": 0.8799
+  },
+  "arm": "RUOD_trainuep_testuep",
+  "train_domain": "uep",
+  "test_domain": "uep",
+  "yaml": "DUO_uep.yaml"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "mAP50": 0.8518,
+  "mAP50_95": 0.6665,
+  "per_class_AP50": {
+   "holothurian": 0.8701,
+   "echinus": 0.9243,
+   "scallop": 0.6873,
+   "starfish": 0.9255
+  },
+  "arm": "P_trainraw_testraw",
+  "train_domain": "raw",
+  "test_domain": "raw",
+  "weights": "/root/autodl-tmp/Underwater/runs/detect/P_raw/weights/best.pt",
+  "yaml": "DUO.yaml"
+ },
+ {
+  "mAP50": 0.6176,
+  "mAP50_95": 0.4473,
+  "per_class_AP50": {
+   "holothurian": 0.5648,
+   "echinus": 0.8202,
+   "scallop": 0.2819,
+   "starfish": 0.8035
+  },
+  "arm": "P_trainraw_testuep",
+  "train_domain": "raw",
+  "test_domain": "uep",
+  "weights": "/root/autodl-tmp/Underwater/runs/detect/P_raw/weights/best.pt",
+  "yaml": "DUO_uep.yaml"
+ },
+ {
+  "mAP50": 0.7152,
+  "mAP50_95": 0.5198,
+  "per_class_AP50": {
+   "holothurian": 0.7355,
+   "echinus": 0.9012,
+   "scallop": 0.5245,
+   "starfish": 0.6997
+  },
+  "arm": "P_trainuep_testraw",
+  "train_domain": "uep",
+  "test_domain": "raw",
+  "weights": "/root/autodl-tmp/Underwater/runs/detect/P_uep/weights/best.pt",
+  "yaml": "DUO.yaml"
+ },
+ {
+  "mAP50": 0.8469,
+  "mAP50_95": 0.6509,
+  "per_class_AP50": {
+   "holothurian": 0.8714,
+   "echinus": 0.9203,
+   "scallop": 0.6712,
+   "starfish": 0.9248
+  },
+  "arm": "P_trainuep_testuep",
+  "train_domain": "uep",
+  "test_domain": "uep",
+  "weights": "/root/autodl-tmp/Underwater/runs/detect/P_uep/weights/best.pt",
+  "yaml": "DUO_uep.yaml"
+ }
+]

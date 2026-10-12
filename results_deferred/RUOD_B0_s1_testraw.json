@@ -1,0 +1,16 @@
+{
+ "mAP50": 0.6766,
+ "mAP50_95": 0.3565,
+ "per_class_AP50": {
+  "holothurian": 0.6096,
+  "echinus": 0.8045,
+  "scallop": 0.4652,
+  "starfish": 0.8269
+ },
+ "model": "B0_s1",
+ "train_domain": "raw",
+ "test_domain": "raw",
+ "yaml": "RUOD_test.yaml",
+ "dataset": "RUOD-test4200",
+ "note": "DUO 训练的跨域代理"
+}

@@ -1,0 +1,23 @@
+{
+ "mAP50": 0.6414,
+ "mAP50_95": 0.4492,
+ "per_class_AP50": {
+  "holothurian": 0.5239,
+  "echinus": 0.8776,
+  "scallop": 0.3372,
+  "starfish": 0.8268
+ },
+ "arm": "G_train50_test100_s1",
+ "seed": 1,
+ "train_constants": {
+  "wb_max": 0.45,
+  "alpha_clip": 0.25,
+  "sat_max": 1.175
+ },
+ "test_constants": {
+  "wb_max": 0.9,
+  "alpha_clip": 0.25,
+  "sat_max": 1.35
+ },
+ "yaml": "DUO_G_train50_test100.yaml"
+}

@@ -1,0 +1,14 @@
+{
+ "mAP50": 0.625,
+ "mAP50_95": 0.3637,
+ "per_class_AP50": {
+  "holothurian": 0.5948,
+  "echinus": 0.8515,
+  "scallop": 0.4343,
+  "starfish": 0.6195
+ },
+ "arm": "RUOD_trainuep_testraw",
+ "train_domain": "uep",
+ "test_domain": "raw",
+ "yaml": "RUOD.yaml"
+}

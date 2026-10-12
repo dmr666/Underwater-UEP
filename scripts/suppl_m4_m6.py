@@ -130,16 +130,16 @@ def arms_table(data: Path, outdir: Path, name: str, w_raw: Path, w_uep: Path):
 # ---------------------------------------------------------------- M4：half-strength 2×2 补 3 种子
 def m4(data: Path, runs: Path, outdir: Path, workers: int):
     """补 seed1/2：half→half（域内一致）与 half→full（失配）；其余格复用已有权重。"""
-    plan = [("H_train50_test50", HALF, HALF), ("H_train50_test100", HALF, FULL)]
+    # 数据目录名与论文 seed0 的两次 run 完全同名 → prepare 检测到已生成会直接跳过，
+    # 从而保证补种子的训练图/测试图与 seed0 逐图一致（不重新生成=无漂移风险）
+    plan = [("G_train50_test50", HALF, HALF), ("G_train50_test100", HALF, FULL)]
     rows = []
     for name, tr, te in plan:
+        yaml_name = de.prepare(data, outdir, name, tr, te, workers=workers)
         for seed in (1, 2):
             run_name = f"{name}_s{seed}"
             w = runs / run_name / "weights" / "best.pt"
-            if w.exists():
-                yaml_name = de.prepare(data, outdir, name, tr, te, workers=workers, splits=("test",))
-            else:
-                yaml_name = de.prepare(data, outdir, name, tr, te, workers=workers)
+            if not w.exists():
                 w = train2(data, runs, run_name, yaml_name, seed=seed)
             rec = de.evaluate(data, w, yaml_name)
             rec.update(arm=run_name, seed=seed, train_constants=tr, test_constants=te, yaml=yaml_name)
@@ -155,12 +155,11 @@ def m6a(data: Path, runs: Path, outdir: Path, workers: int, weights_pt: str):
     """与论文同协议，仅把 from-scratch 换成 COCO 预训练权重做微调；跑四条一致性臂。"""
     w_raw = runs / "P_raw" / "weights" / "best.pt"
     w_uep = runs / "P_uep" / "weights" / "best.pt"
+    # 复用论文现成的两个域（不生成新图）：raw 域 = DUO.yaml，增强域 = DUO_uep.yaml
     if not w_raw.exists():
-        y1 = de.prepare(data, outdir, "raw", FULL, FULL, workers=workers, splits=("test",))
         w_raw = train2(data, runs, "P_raw", "DUO.yaml", seed=0, model=weights_pt, pretrained=True)
     if not w_uep.exists():
-        y2 = de.prepare(data, outdir, "uep", FULL, FULL, workers=workers)
-        w_uep = train2(data, runs, "P_uep", y2, seed=0, model=weights_pt, pretrained=True)
+        w_uep = train2(data, runs, "P_uep", "DUO_uep.yaml", seed=0, model=weights_pt, pretrained=True)
     rows = arms_table(data, outdir, "P", w_raw, w_uep)
     (outdir / "summary_m6a.json").write_text(json.dumps(rows, indent=1, ensure_ascii=False), encoding="utf-8")
     de.log(f"m6a 完成 {len(rows)} 臂 → {outdir}/summary_m6a.json")
@@ -173,9 +172,10 @@ def ruod_prepare(src: Path, data_out: Path, workers: int):
     import cv2
     tr_j, te_j = src / "train.json", src / "test.json"
     if not tr_j.exists():
-        cand = sorted(src.glob("*.json"))
+        cand = sorted(src.rglob("*.json"))                     # 递归：RUOD 的标注在 RUOD_ANN/ 子目录里
         tr_j = next((c for c in cand if "train" in c.name.lower()), None)
         te_j = next((c for c in cand if "test" in c.name.lower()), None)
+    print(f"[ruod] 标注: train={tr_j}  test={te_j}", flush=True)
     assert tr_j and tr_j.exists(), f"未找到 RUOD 的 COCO 标注（{src}）"
     pics = next((p for p in [src, src / "RUOD_pic", src / "images"] if p.exists()), src)
     for jf, split in ((tr_j, "train"), (te_j, "test")):
@@ -185,6 +185,7 @@ def ruod_prepare(src: Path, data_out: Path, workers: int):
         id2img = {im["id"]: im for im in d["images"]}
         img_dir = data_out / "images" / split; lab_dir = data_out / "labels" / split
         img_dir.mkdir(parents=True, exist_ok=True); lab_dir.mkdir(parents=True, exist_ok=True)
+        missing = 0
         for im in d["images"]:
             (lab_dir / (Path(im["file_name"]).stem + ".txt")).write_text("", encoding="utf-8")
         for an in d["annotations"]:
@@ -195,10 +196,17 @@ def ruod_prepare(src: Path, data_out: Path, workers: int):
             with open(lab_dir / (Path(im["file_name"]).stem + ".txt"), "a", encoding="utf-8") as f:
                 f.write(f"{cat-1} {(x+w/2)/W:.6f} {(y+h/2)/H:.6f} {w/W:.6f} {h/H:.6f}\n")
         for im in d["images"]:
-            s = pics / im["file_name"]; t = img_dir / im["file_name"]
-            if s.exists() and not t.exists():
-                shutil.copy2(s, t)
-        de.log(f"RUOD {split}: {len(d['images'])} 图 / {len(d['annotations'])} 标注")
+            t = img_dir / im["file_name"]
+            if t.exists():
+                continue                      # 目标已存在（如测试图已在实例上硬链接）→ 不动
+            # 源图可能在多个层次：RUOD_pic/*.jpg、RUOD_pic/{split}/*.jpg、RUOD_pic/RUOD_pic/{split}/*.jpg
+            for cand in (pics / im["file_name"], pics / split / im["file_name"],
+                         pics / "RUOD_pic" / split / im["file_name"], pics / "RUOD_pic" / im["file_name"]):
+                if cand.exists():
+                    shutil.copy2(cand, t); break
+            else:
+                missing += 1
+        de.log(f"RUOD {split}: {len(d['images'])} 图 / {len(d['annotations'])} 标注 / 缺图 {missing}")
     (data_out / "RUOD.yaml").write_text(
         f"path: {data_out}\ntrain: images/train\nval: images/test\ntest: images/test\n"
         "names:\n  0: holothurian\n  1: echinus\n  2: scallop\n  3: starfish\n", encoding="utf-8")

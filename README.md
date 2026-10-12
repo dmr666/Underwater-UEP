@@ -173,3 +173,34 @@ half/half configuration is the strongest result in the study (mAP50 0.818), whil
 tested half). Single-seed runs, marked with a dagger in Table 3 of the paper.
 Results: `results_deferred/G_*.json`, `results_deferred/summary_graded.json`; analysis notes in
 `results_deferred/ANALYSIS.md`. Runner: `scripts/deferred_experiments.py` (see `docs/deferred_experiments.md`).
+
+## Supplementary experiments (reviewer round 2, 2026-10-12)
+
+All runs use the identical pinned protocol (`scripts/suppl_m4_m6.py`; three-stage pre-flight:
+`audit` against the archived `args.yaml`, `selftest`, and a real one-epoch `smoketrain`).
+
+**M4 — half-strength matrix with three seeds.** The two graded cells that were single-seed in the
+paper are now n=3: consistent half-strength **0.814 ± 0.006** (0.8183/0.8155/0.8076) versus
+half-train/full-test **0.640 ± 0.002** (0.6391/0.6414/0.6382), i.e. a separation of +0.174 mAP50
+against a within-cell sd of <=0.006. The complementary cell (full-train/half-test) was completed by
+re-evaluating the existing full-strength weights on the half-strength test set (0.7421/0.7436/0.7633,
+**0.750 ± 0.012**), so every cell of the consistency table is now three-seed.
+*Honest consequence:* with three seeds, the consistent half-strength setting (0.814 ± 0.006) and
+white-balance-only enhancement (0.815 ± 0.006) are statistically indistinguishable — the paper now
+says so, which strengthens (rather than weakens) its claim that the gain comes from consistency
+rather than from enhancement strength.
+
+**M6a — COCO-pretrained fine-tuning** (same schedule, 150 epochs): raw 0.852 / UEP 0.847;
+inference-only enhancement costs **−23.4** mAP50 (0.852 to 0.618) and the reverse mismatch **−13.2**
+(0.847 to 0.715). The penalty structure survives the change of training regime.
+
+**M6b — second dataset, from scratch.** RUOD (4,200-image test split, the four DUO classes) trained
+from scratch under the same protocol: raw 0.817 / UEP 0.821; inference-only enhancement **−23.7**,
+reverse mismatch **−19.6**. `scripts/ruod_proxy.py` additionally transfers the enhancement across
+datasets (DUO-trained raw model, three seeds, evaluated on RUOD): **−26.1** (0.678 to 0.417), while
+the UEP-trained model prefers the enhanced input (0.506 to 0.530).
+
+**Domain reproducibility check.** `scripts/gate_prepare.py` regenerates the enhanced image domains
+deterministically and re-scores the paper's own weights on them: `G_train50_test50` reproduces its
+published seed-0 value exactly (0.8183 vs 0.8183, difference 0.0000), confirming that the regenerated
+domains are pixel-identical to those used in the paper.
